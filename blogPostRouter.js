@@ -60,3 +60,4 @@ router.put('/:id', jsonParser, (req, res) => {
   res.status(204).end();
 })
 
+module.exports = router;
