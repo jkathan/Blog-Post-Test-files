@@ -25,12 +25,12 @@ router.post('/', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  const item = Recipes.create(req.body.post);
+  const item = BlogPost.create(req.body.post);
   res.status(201).json(item);
 });
 
 router.delete('/:id', (req, res) => {
-  Recipes.delete(req.params.id);
+  BlogPost.delete(req.params.id);
   console.log(`Deleted blog post item \`${req.params.ID}\``);
   res.status(204).end();
 });
@@ -53,7 +53,7 @@ router.put('/:id', jsonParser, (req, res) => {
     return res.status(400).send(message);
   }
   console.log(`Updating shopping list item \`${req.params.id}\``);
-  const updatedItem = Recipes.update({
+  const updatedItem = BlogPost.update({
     id: req.params.id,
     post: req.body.post,
   });
