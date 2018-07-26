@@ -1,0 +1,27 @@
+{
+  "name": "blog-post-test-files",
+  "description": "Creating a blog API",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkathan/Blog-Post-Test-files.git"
+  },
+  "keywords": [
+    "\"node\"",
+    "\"blog\"",
+    "\"express\""
+  ],
+  "author": "kathan.joey@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkathan/Blog-Post-Test-files/issues"
+  },
+  "homepage": "https://github.com/jkathan/Blog-Post-Test-files#readme",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
+}
