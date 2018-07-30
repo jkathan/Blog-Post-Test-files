@@ -7,8 +7,13 @@ const jsonParser = bodyParser.json();
 
 const {BlogPost} = require('./models');
 
-BlogPost.create('this is the first blog post');
-BlogPost.create('this is the second blog post');
+function lorem() {
+  return ('text text text');
+  )
+  
+
+BlogPost.create('this is the first blog post', lorem(), "Joe Schmoo");
+BlogPost.create('this is the second blog post', lorem(), "Tera Cota");
 
 router.get('/', (req, res) => {
   res.json(BlogPost.get());
@@ -16,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.post('/', jsonParser, (req, res) => {
   // ensure `name` and `budget` are in request body
-  const requiredFields = ['entry'];
+  const requiredFields = ["title", "content", "author"];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -25,18 +30,22 @@ router.post('/', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  const item = Recipes.create(req.body.post);
+  const item = BlogPost.create(
+    req.body.title,
+    req.body.content,
+    req.body.author
+  );
   res.status(201).json(item);
 });
 
 router.delete('/:id', (req, res) => {
-  Recipes.delete(req.params.id);
+  BlogPost.delete(req.params.id);
   console.log(`Deleted blog post item \`${req.params.ID}\``);
   res.status(204).end();
 });
 
 router.put('/:id', jsonParser, (req, res) => {
-  const requiredFields = ['entry'];
+  const requiredFields = ["id", "title", "content", "author", "publishDate"];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -53,10 +62,14 @@ router.put('/:id', jsonParser, (req, res) => {
     return res.status(400).send(message);
   }
   console.log(`Updating shopping list item \`${req.params.id}\``);
-  const updatedItem = Recipes.update({
+  const updatedItem = BlogPost.update({
     id: req.params.id,
-    post: req.body.post,
+    title: req.body.title,
+    content: req.body.content,
+    author: req.body.author,
+    publishDate: req.body.publishDate
   });
   res.status(204).end();
 })
 
+module.exports = router;
